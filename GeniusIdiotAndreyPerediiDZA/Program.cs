@@ -1,21 +1,23 @@
-﻿using System.Text;
+﻿using System.Security.Cryptography.X509Certificates;
+using System.Text;
 
 namespace GeniusIdiotAndreyPerediiDZA
 {
-    class Program
+    partial class Program
     {
        
         static void Main()
         {
+
+             
             while(true)
             {
                 Console.WriteLine("Введите ваше имя");
                 var userName = Console.ReadLine();
                 var questions = QuestionStorage.GetAll();
- 
+                var user = new User(userName);
                 var countQuestions = questions.Count;
                 var random = new Random();
-                var countRightAnswers = 0;
                 for (int i = 0; i < countQuestions; ++i)
                 {
                     Console.WriteLine($"Вопрос №{i + 1}");
@@ -25,14 +27,15 @@ namespace GeniusIdiotAndreyPerediiDZA
                     var rightAnswer = questions[randomQuestionIndex].Answer;
                     if (userAnswer == rightAnswer)
                     {
-                        countRightAnswers++;
+                        user.AcceptRightAnswer();
                     }
                     questions.RemoveAt(randomQuestionIndex);
                 }
-                Console.WriteLine($"Количество правильных ответов: {countRightAnswers}");
-                var diagnose = CalculateDiagnoses(countRightAnswers, countQuestions);
-                Console.WriteLine($"{userName}, ваш диагноз: {diagnose}");
-                SaveUserResult(userName, countRightAnswers, diagnose);
+                Console.WriteLine($"Количество правильных ответов: {user.CountRightAnswers}");
+                var diagnose = CalculateDiagnoses(user.CountRightAnswers, countQuestions);
+                user.Diagnose = diagnose;
+                Console.WriteLine($"{userName}, ваш диагноз: {user.Diagnose}");
+                UserResultsStorage.Save(user);
                 var userChoice = GetUserChoice("Хотите посмотреть предыдущие результаты игры?");
                 if(userChoice)
                 {
@@ -46,37 +49,16 @@ namespace GeniusIdiotAndreyPerediiDZA
             }
         }
 
-        static void ShowUserResults()
+        public static void ShowUserResults()
         {
-            var reader = new StreamReader("userResults.txt", Encoding.UTF8);
-            Console.WriteLine("{0,-20}, {1,18}, {2,15}", "Имя", "Кол-во правильных ответов","Диагноз");
-            while(!reader.EndOfStream)
+            var users = UserResultsStorage.GetUserResults();
+            
+            Console.WriteLine("{0,-20}, {1,18}, {2,15}", "Имя", "Кол-во правильных ответов", "Диагноз");
+            foreach (var user in users) 
             {
-                var line = reader.ReadLine();
-                var values = line.Split("#");
-                var name = values[0];
-                var countRightAnswers = Convert.ToInt32(values[1]);
-                var diagnose = values[2];
-                Console.WriteLine("{0,-20}, {1,18}, {2,15}", name, countRightAnswers, diagnose);
-
+                Console.WriteLine("{0,-20}, {1,18}, {2,15}", user.Name, user.CountRightAnswers, user.Diagnose);
             }
-            reader.Close();
         }
-
-        static void SaveUserResult(string userName, int countRightAnswers, string diagnose)
-        {
-            var value = $"{userName}#{countRightAnswers}#{diagnose}";
-            AppendToFile("userResults.txt", value);
-        }
-
-        static void AppendToFile(string fileName, string value)
-        {
-            var writer = new StreamWriter(fileName, true, Encoding.UTF8);
-            writer.WriteLine(value);
-            writer.Close();
-
-        }
-
         static bool GetUserChoice(string message)
         {
             while(true)
