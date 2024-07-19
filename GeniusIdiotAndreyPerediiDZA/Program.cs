@@ -1,15 +1,10 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using System.Text;
-
-namespace GeniusIdiotAndreyPerediiDZA
+﻿namespace GeniusIdiotAndreyPerediiDZA
 {
-    partial class Program
+    class Program
     {
-       
+
         static void Main()
         {
-
-             
             while(true)
             {
                 Console.WriteLine("Введите ваше имя");
