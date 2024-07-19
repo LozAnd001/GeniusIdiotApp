@@ -1,8 +1,9 @@
 ﻿using System.Text;
 
-public class Mainclass
+namespace GeniusIdiotAndreyPerediiDZA
+
 {
-    internal class Program
+    class Program
     {
         static void Main()
         {
