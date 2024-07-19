@@ -1,4 +1,4 @@
-﻿public partial class Mainclass
+﻿namespace GeniusIdiotAndreyPerediiDZA
 {
     public class Question
     {

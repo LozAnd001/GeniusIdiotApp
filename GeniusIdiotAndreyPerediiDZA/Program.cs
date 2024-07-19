@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-public partial class Mainclass
+namespace GeniusIdiotAndreyPerediiDZA
 {
     class Program
     {
@@ -9,8 +9,6 @@ public partial class Mainclass
         {
             while(true)
             {
-                
-
                 Console.WriteLine("Введите ваше имя");
                 var userName = Console.ReadLine();
                 var questions = QuestionStorage.GetAll();

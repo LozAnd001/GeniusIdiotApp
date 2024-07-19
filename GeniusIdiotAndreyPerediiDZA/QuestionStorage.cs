@@ -1,7 +1,6 @@
-﻿public partial class Mainclass
+﻿namespace GeniusIdiotAndreyPerediiDZA
 {
-    internal partial class Program
-    {
+    
         public class QuestionStorage
         {
             public static List<Question> GetAll()
@@ -17,5 +16,5 @@
                 return questions;
             }
         }
-    }
+    
 }
