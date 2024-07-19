@@ -1,17 +1,20 @@
 ﻿using System.Text;
 
-public class Mainclass
+public partial class Mainclass
 {
-    internal class Program
+    class Program
     {
+       
         static void Main()
         {
             while(true)
             {
+                
+
                 Console.WriteLine("Введите ваше имя");
                 var userName = Console.ReadLine();
-                var questions = GetQuestions();
-                var answers = GetAnswers();
+                var questions = QuestionStorage.GetAll();
+ 
                 var countQuestions = questions.Count;
                 var random = new Random();
                 var countRightAnswers = 0;
@@ -19,15 +22,14 @@ public class Mainclass
                 {
                     Console.WriteLine($"Вопрос №{i + 1}");
                     var randomQuestionIndex = random.Next(0, questions.Count);
-                    Console.WriteLine(questions[randomQuestionIndex]);
+                    Console.WriteLine(questions[randomQuestionIndex].Text);
                     var userAnswer = GetUserAnswer();
-                    var rightAnswer = answers[randomQuestionIndex];
+                    var rightAnswer = questions[randomQuestionIndex].Answer;
                     if (userAnswer == rightAnswer)
                     {
                         countRightAnswers++;
                     }
                     questions.RemoveAt(randomQuestionIndex);
-                    answers.RemoveAt(randomQuestionIndex);
                 }
                 Console.WriteLine($"Количество правильных ответов: {countRightAnswers}");
                 var diagnose = CalculateDiagnoses(countRightAnswers, countQuestions);
@@ -46,7 +48,7 @@ public class Mainclass
             }
         }
 
-        private static void ShowUserResults()
+        static void ShowUserResults()
         {
             var reader = new StreamReader("userResults.txt", Encoding.UTF8);
             Console.WriteLine("{0,-20}, {1,18}, {2,15}", "Имя", "Кол-во правильных ответов","Диагноз");
@@ -151,32 +153,5 @@ public class Mainclass
             diagnoses[5] = "гений";
             return diagnoses;
         }
-
-        static List<int> GetAnswers()
-        {
-            var answers = new List<int>
-            {
-                6,
-                9,
-                25,
-                60,
-                2
-            };
-            return answers;
-        }
-
-        static List<string> GetQuestions()
-        {
-            var questions = new List<string>
-            {
-                "Сколько будет два плюс два умноженное на два?",
-                "Бревно нужно распилить на 10 частей. Сколько распилов нужно сделать?",
-                "На двух руках 10 пальцев. Сколько пальцев на 5 руках?",
-                "Укол делают каждые полчаса. Сколько нужно минут, чтобы сделать три укола?",
-                "Пять свечей горело, две потухли. Сколько свечей осталось?"
-            };
-            return questions;
-        }
-
     }
 }
