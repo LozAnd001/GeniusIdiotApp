@@ -11,8 +11,8 @@ namespace GeniusIdiotAndreyPerediiDZA
             
             var results = new List<User>();
             var value = FileProvider.GetValue("userResults.txt");
-            var lines = value.Split('\n');
-            foreach(var line in lines)
+            var lines = value.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (var line in lines)
             {
                
                 var values = line.Split("#");

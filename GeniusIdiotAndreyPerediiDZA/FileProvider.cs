@@ -19,7 +19,12 @@ namespace GeniusIdiotAndreyPerediiDZA
             return value;
         }
 
-        internal static bool Exists(string fileName)
+        public static void Clear(string fileName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool Exists(string fileName)
         {
             return File.Exists(fileName);
         }
