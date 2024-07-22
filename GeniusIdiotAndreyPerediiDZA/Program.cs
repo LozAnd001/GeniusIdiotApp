@@ -18,7 +18,7 @@
                     Console.WriteLine($"Вопрос №{i + 1}");
                     var randomQuestionIndex = random.Next(0, questions.Count);
                     Console.WriteLine(questions[randomQuestionIndex].Text);
-                    var userAnswer = GetUserAnswer();
+                    var userAnswer = GetNumber();
                     var rightAnswer = questions[randomQuestionIndex].Answer;
                     if (userAnswer == rightAnswer)
                     {
@@ -36,6 +36,11 @@
                 {
                     ShowUserResults();
                 }
+                userChoice = GetUserChoice("Хотите добавить новый вопрос?");
+                if (userChoice)
+                {
+                    AddNewQuestion();
+                }
                 userChoice = GetUserChoice("Хотите начать сначала?");
                 if(userChoice == false)
                 {
@@ -44,7 +49,17 @@
             }
         }
 
-        public static void ShowUserResults()
+        static void AddNewQuestion()
+        {
+            Console.WriteLine("Введите текс вопроса");
+            var text = Console.ReadLine();
+            Console.WriteLine("Введите ответ на вопрос");
+            var answer = GetNumber();
+            var newQuestion = new Question(text, answer);
+            QuestionStorage.Add(newQuestion);
+        }
+
+        static void ShowUserResults()
         {
             var users = UserResultsStorage.GetUserResults();
             
@@ -71,7 +86,7 @@
             }
         }
 
-        static int GetUserAnswer()
+        static int GetNumber()
         {
            while(true)
            {

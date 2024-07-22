@@ -31,7 +31,7 @@ namespace GeniusIdiotAndreyPerediiDZA
         public static void Save(User user)
         {
             var value = $"{user.Name}#{user.CountRightAnswers}#{user.Diagnose}";
-            FileProvider.AppendToFile("userResults.txt", value);
+            FileProvider.Append("userResults.txt", value);
         }
        
 

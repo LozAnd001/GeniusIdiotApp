@@ -5,7 +5,7 @@ namespace GeniusIdiotAndreyPerediiDZA
     
     public class FileProvider
     {
-        public static void AppendToFile(string fileName, string value)
+        public static void Append(string fileName, string value)
         {
             var writer = new StreamWriter(fileName, true, Encoding.UTF8);
             writer.WriteLine(value);
@@ -19,6 +19,10 @@ namespace GeniusIdiotAndreyPerediiDZA
             return value;
         }
 
+        internal static bool Exists(string fileName)
+        {
+            return File.Exists(fileName);
+        }
     }
     
 }
