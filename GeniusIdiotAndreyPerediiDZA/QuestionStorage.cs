@@ -51,7 +51,14 @@ namespace GeniusIdiotAndreyPerediiDZA
         public static void Remove(Question removeQuestion)
         {
             var questions = GetAll();
-            questions.Remove(removeQuestion);
+            for(int i = 0; i < questions.Count;++i)
+            {
+                if (questions[i].Text == removeQuestion.Text)
+                {
+                    questions.RemoveAt(i);
+                    break;
+                }
+            }
             FileProvider.Clear("question.txt");
             SaveQuestions(questions);
         }

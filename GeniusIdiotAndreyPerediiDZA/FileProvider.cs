@@ -21,7 +21,7 @@ namespace GeniusIdiotAndreyPerediiDZA
 
         public static void Clear(string fileName)
         {
-            throw new NotImplementedException();
+            File.WriteAllText(fileName, string.Empty);
         }
 
         public static bool Exists(string fileName)
