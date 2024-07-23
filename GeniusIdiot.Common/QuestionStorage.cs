@@ -1,5 +1,8 @@
 ﻿
-namespace GeniusIdiotConsoleApp
+using System;
+using System.Collections.Generic;
+
+namespace GeniusIdiot.Common
 {
     
     public class QuestionStorage
@@ -15,7 +18,7 @@ namespace GeniusIdiotConsoleApp
                 foreach (var line in lines)
                 {
 
-                    var values = line.Split("#");
+                    var values = line.Split('#');
                     var text = values[0];
                     var answer = Convert.ToInt32(values[1]);
                     var question = new Question(text, answer);

@@ -1,4 +1,4 @@
-﻿namespace GeniusIdiotConsoleApp
+﻿namespace GeniusIdiot.Common
 {
     class Program
     {

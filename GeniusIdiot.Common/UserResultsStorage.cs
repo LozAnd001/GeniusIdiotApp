@@ -1,6 +1,8 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace GeniusIdiotConsoleApp
+namespace GeniusIdiot.Common
 {
 
 
@@ -15,7 +17,7 @@ namespace GeniusIdiotConsoleApp
             foreach (var line in lines)
             {
                
-                var values = line.Split("#");
+                var values = line.Split('#');
                 var name = values[0];
                 var countRightAnswers = Convert.ToInt32(values[1]);
                 var diagnose = values[2];

@@ -1,4 +1,4 @@
-﻿namespace GeniusIdiotConsoleApp
+﻿namespace GeniusIdiot.Common
 {
 
     public class User

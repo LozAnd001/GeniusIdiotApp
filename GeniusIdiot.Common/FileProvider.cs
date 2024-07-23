@@ -1,6 +1,7 @@
-﻿using System.Text;
+﻿using System.IO;
+using System.Text;
 
-namespace GeniusIdiotConsoleApp
+namespace GeniusIdiot.Common
 {
     
     public class FileProvider

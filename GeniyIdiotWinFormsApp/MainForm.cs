@@ -1,4 +1,5 @@
-using GeniusIdiotConsoleApp;
+using GeniusIdiot.Common;
+
 
 namespace GeniyIdiotWinFormsApp
 {
