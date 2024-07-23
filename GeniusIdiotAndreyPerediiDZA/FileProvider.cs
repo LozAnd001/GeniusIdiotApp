@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace GeniusIdiotAndreyPerediiDZA
+namespace GeniusIdiotConsoleApp
 {
     
     public class FileProvider

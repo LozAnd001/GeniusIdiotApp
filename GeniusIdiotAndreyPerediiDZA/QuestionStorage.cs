@@ -1,5 +1,5 @@
 ﻿
-namespace GeniusIdiotAndreyPerediiDZA
+namespace GeniusIdiotConsoleApp
 {
     
     public class QuestionStorage

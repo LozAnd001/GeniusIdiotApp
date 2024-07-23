@@ -1,4 +1,4 @@
-﻿namespace GeniusIdiotAndreyPerediiDZA
+﻿namespace GeniusIdiotConsoleApp
 {
     class Program
     {
