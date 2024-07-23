@@ -8,6 +8,7 @@ namespace GeniyIdiotWinFormsApp
         private Question currentQuestion;
         private int countQuestions;
         private User user;
+        private int questionNumber;
         public mainForm()
         {
             InitializeComponent();
@@ -18,6 +19,7 @@ namespace GeniyIdiotWinFormsApp
             questions = QuestionStorage.GetAll();
             countQuestions = questions.Count;
             user = new User("Неизвестно");
+            questionNumber = 0;
             ShowNextQuestion();
         }
 
@@ -27,6 +29,9 @@ namespace GeniyIdiotWinFormsApp
             var randomIndex = random.Next(0, questions.Count);
             currentQuestion = questions[randomIndex];
             questionTextLabel.Text = currentQuestion.Text;
+            questionNumber++;
+            questionNumberLabel.Text = $"Вопрос №{questionNumber}";
+            
         }
 
         private void nextButton_Click(object sender, EventArgs e)
@@ -37,15 +42,15 @@ namespace GeniyIdiotWinFormsApp
             {
                 user.AcceptRightAnswer();
             }
+            questions.Remove(currentQuestion);
             var endGame = questions.Count == 0;
             if(endGame)
             {
-                user.Diagnose = 
-
+                user.Diagnose = Diagnose.Calculate(user.CountRightAnswers, countQuestions);
+                MessageBox.Show(user.Diagnose);
+                return;
             }
-            questions.Remove(currentQuestion);
             ShowNextQuestion();
-
         }
     }
 }

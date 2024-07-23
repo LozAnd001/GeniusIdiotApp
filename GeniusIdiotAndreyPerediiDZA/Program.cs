@@ -27,7 +27,7 @@
                     questions.RemoveAt(randomQuestionIndex);
                 }
                 Console.WriteLine($"Количество правильных ответов: {user.CountRightAnswers}");
-                var diagnose = CalculateDiagnoses(user.CountRightAnswers, countQuestions);
+                var diagnose = Diagnose.Calculate(user.CountRightAnswers, countQuestions);
                 user.Diagnose = diagnose;
                 Console.WriteLine($"{userName}, ваш диагноз: {user.Diagnose}");
                 UserResultsStorage.Save(user);
@@ -129,43 +129,6 @@
             }
         }
 
-        static string CalculateDiagnoses(int countRightAnswers, int countQuestions)
-        {
-            var diagnoses = GetDiagnoses();
-            var percentRightAnswers = countRightAnswers * 100 / countQuestions;
-            if(percentRightAnswers < 20)
-            {
-                return diagnoses[0];
-            }
-            if (percentRightAnswers < 40)
-            {
-                return diagnoses[1];
-            }
-            if (percentRightAnswers < 60)
-            {
-                return diagnoses[2];
-            }
-            if (percentRightAnswers < 80)
-            {
-                return diagnoses[3];
-            }
-            if (percentRightAnswers < 100)
-            {
-                return diagnoses[4];
-            }
-            return diagnoses[5];
-        }
-
-        static string[] GetDiagnoses()
-        {
-            var diagnoses = new string[6];
-            diagnoses[0] = "кретин";
-            diagnoses[1] = "идиот";
-            diagnoses[2] = "дурак";
-            diagnoses[3] = "нормальный";
-            diagnoses[4] = "талант";
-            diagnoses[5] = "гений";
-            return diagnoses;
-        }
+        
     }
 }
