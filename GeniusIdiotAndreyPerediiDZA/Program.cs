@@ -112,21 +112,12 @@
 
         static int GetNumber()
         {
-           while(true)
+           int number; string errorMessage;
+           while (!InputValidator.TryParseToNumber(Console.ReadLine(), out number, out errorMessage))
            {
-                try
-                {
-                    return Convert.ToInt32(Console.ReadLine());
-                }
-                catch(FormatException)
-                {
-                    Console.WriteLine("Введите число!");
-                }
-                catch (OverflowException)
-                {
-                    Console.WriteLine("Введите число от -2*10^9 до 2*10^9");
-                }
-            }
+                Console.WriteLine(errorMessage);
+           }
+            return number;
         }
 
         
