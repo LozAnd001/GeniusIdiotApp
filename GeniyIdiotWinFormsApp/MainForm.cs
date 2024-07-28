@@ -17,9 +17,11 @@ namespace GeniyIdiotWinFormsApp
 
         private void mainForm_Load(object sender, EventArgs e)
         {
+            var welcomeForm = new WelcomeForm();
+            welcomeForm.ShowDialog();
             questions = QuestionStorage.GetAll();
             countQuestions = questions.Count;
-            user = new User("Неизвестно");
+            user = new User(welcomeForm.userNameTextBox.Text);
             questionNumber = 0;
             ShowNextQuestion();
         }
@@ -49,7 +51,7 @@ namespace GeniyIdiotWinFormsApp
             {
                 user.Diagnose = Diagnose.Calculate(user.CountRightAnswers, countQuestions);
                 UserResultsStorage.Save(user);
-                MessageBox.Show(user.Diagnose);
+                MessageBox.Show(user.Name + ":"+user.Diagnose);
                 return;
             }
             ShowNextQuestion();
