@@ -34,27 +34,44 @@ namespace GeniyIdiotWinFormsApp
             questionTextLabel.Text = currentQuestion.Text;
             questionNumber++;
             questionNumberLabel.Text = $"Âîïğîñ ¹{questionNumber}";
-            
+
         }
 
         private void nextButton_Click(object sender, EventArgs e)
         {
             var userAnswer = Convert.ToInt32(userAnswerTextBox.Text);
             var rightAnswer = currentQuestion.Answer;
-            if(userAnswer == rightAnswer)
+            if (userAnswer == rightAnswer)
             {
                 user.AcceptRightAnswer();
             }
             questions.Remove(currentQuestion);
             var endGame = questions.Count == 0;
-            if(endGame)
+            if (endGame)
             {
                 user.Diagnose = Diagnose.Calculate(user.CountRightAnswers, countQuestions);
                 UserResultsStorage.Save(user);
-                MessageBox.Show(user.Name + ":"+user.Diagnose);
+                MessageBox.Show(user.Name + ":" + user.Diagnose);
                 return;
             }
             ShowNextQuestion();
+        }
+
+        private void âûõîäToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void ğåñòàğòToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
+        }
+
+        private void ïğåäûäóùèåĞåçóëüòàòûToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var resultForm = new ResultForm();
+            resultForm.ShowDialog();
+
         }
     }
 }
