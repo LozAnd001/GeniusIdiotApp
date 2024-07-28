@@ -8,11 +8,12 @@ namespace GeniusIdiot.Common
 
     public class UserResultsStorage
     {
+        private static string fileName = "userResults.txt";
         public static List<User> GetUserResults()
         {
             
             var results = new List<User>();
-            var value = FileProvider.GetValue("userResults.txt");
+            var value = FileProvider.GetValue(fileName);
             var lines = value.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
             foreach (var line in lines)
             {
@@ -35,7 +36,7 @@ namespace GeniusIdiot.Common
         public static void Save(User user)
         {
             var value = $"{user.Name}#{user.CountRightAnswers}#{user.Diagnose}";
-            FileProvider.Append("userResults.txt", value);
+            FileProvider.Append(fileName, value);
         }
        
 

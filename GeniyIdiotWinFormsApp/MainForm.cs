@@ -48,6 +48,7 @@ namespace GeniyIdiotWinFormsApp
             if(endGame)
             {
                 user.Diagnose = Diagnose.Calculate(user.CountRightAnswers, countQuestions);
+                UserResultsStorage.Save(user);
                 MessageBox.Show(user.Diagnose);
                 return;
             }

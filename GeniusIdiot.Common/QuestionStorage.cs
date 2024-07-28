@@ -7,13 +7,14 @@ namespace GeniusIdiot.Common
     
     public class QuestionStorage
     {
+        private static string fileName = "questions.txt";
         public static List<Question> GetAll()
         {
 
             var questions = new List<Question>();
-            if (FileProvider.Exists("questions.txt"))
+            if (FileProvider.Exists(fileName))
             {
-                var value = FileProvider.GetValue("questions.txt");
+                var value = FileProvider.GetValue(fileName);
                 var lines = value.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (var line in lines)
                 {
