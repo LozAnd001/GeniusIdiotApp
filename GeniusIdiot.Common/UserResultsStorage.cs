@@ -21,9 +21,11 @@ namespace GeniusIdiot.Common
                 var name = values[0];
                 var countRightAnswers = Convert.ToInt32(values[1]);
                 var diagnose = values[2];
-                var user = new User(name);
-                user.Diagnose = diagnose;
-                user.CountRightAnswers = countRightAnswers;
+                var user = new User(name)
+                {
+                    Diagnose = diagnose,
+                    CountRightAnswers = countRightAnswers
+                };
                 results.Add(user);
             }
             return results;
