@@ -5,11 +5,7 @@ namespace GeniyIdiotWinFormsApp
 {
     public partial class mainForm : Form
     {
-        private List<Question> questions;
-        private Question currentQuestion;
-        private int countQuestions;
-        private User user;
-        private int questionNumber;
+        private Game game;
         public mainForm()
         {
             InitializeComponent();
@@ -19,21 +15,16 @@ namespace GeniyIdiotWinFormsApp
         {
             var welcomeForm = new WelcomeForm();
             welcomeForm.ShowDialog();
-            questions = QuestionStorage.GetAll();
-            countQuestions = questions.Count;
-            user = new User(welcomeForm.userNameTextBox.Text);
-            questionNumber = 0;
+            var user = new User(welcomeForm.userNameTextBox.Text);
+            game = new Game(user);  
             ShowNextQuestion();
         }
 
         private void ShowNextQuestion()
         {
-            var random = new Random();
-            var randomIndex = random.Next(0, questions.Count);
-            currentQuestion = questions[randomIndex];
+            var currentQuestion = game.GetNextQuestion();
             questionTextLabel.Text = currentQuestion.Text;
-            questionNumber++;
-            questionNumberLabel.Text = $"Вопрос №{questionNumber}";
+            questionNumberLabel.Text = game.GetQuestionNumberText();
 
         }
 
@@ -46,18 +37,12 @@ namespace GeniyIdiotWinFormsApp
             }
             else
             {
-                var rightAnswer = currentQuestion.Answer;
-                if (userAnswer == rightAnswer)
+                game.AcceptAnswer(userAnswer);
+                
+                if (game.End())
                 {
-                    user.AcceptRightAnswer();
-                }
-                questions.Remove(currentQuestion);
-                var endGame = questions.Count == 0;
-                if (endGame)
-                {
-                    user.Diagnose = Diagnose.Calculate(user.CountRightAnswers, countQuestions);
-                    UserResultsStorage.Save(user);
-                    MessageBox.Show(user.Name + ":" + user.Diagnose);
+                    var message = game.CalculateDiagnose();
+                    MessageBox.Show(message);
                     return;
                 }
                 ShowNextQuestion();

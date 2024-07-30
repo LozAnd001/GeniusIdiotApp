@@ -43,5 +43,11 @@ namespace GeniusIdiot.Common
         {
             return questions.Count == 0;
         }
+        public string CalculateDiagnose()
+        {
+            user.Diagnose = Diagnose.Calculate(countQuestions, user.CountRightAnswers);
+            UserResultsStorage.Save(user);
+            return user.Name + ", ваш диагноз:" + user.Diagnose;
+        }
     }
 }
