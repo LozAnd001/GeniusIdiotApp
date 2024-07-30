@@ -1,13 +1,12 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace GeniusIdiot.Common
 {
-    
     public class QuestionStorage
     {
         private static string fileName = "questions.txt";
+
         public static List<Question> GetAll()
         {
 
@@ -66,6 +65,5 @@ namespace GeniusIdiot.Common
             FileProvider.Clear("question.txt");
             SaveQuestions(questions);
         }
-    }
-    
+    } 
 }

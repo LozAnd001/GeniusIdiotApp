@@ -5,7 +5,7 @@ VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeniusIdiotConsoleApp", "GeniusIdiotAndreyPerediiDZA\GeniusIdiotConsoleApp.csproj", "{7965BAD2-9CB8-4127-A2A5-9AAFEC2C444D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeniyIdiotWinFormsApp", "GeniyIdiotWinFormsApp\GeniyIdiotWinFormsApp.csproj", "{0CBF2625-0F08-450E-817E-0BACF652ABEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeniusIdiotWinFormsApp", "GeniyIdiotWinFormsApp\GeniusIdiotWinFormsApp.csproj", "{0CBF2625-0F08-450E-817E-0BACF652ABEC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeniusIdiot.Common", "GeniusIdiot.Common\GeniusIdiot.Common.csproj", "{F83C01A4-9EE8-4A4C-983D-6B1A73AE94C3}"
 EndProject

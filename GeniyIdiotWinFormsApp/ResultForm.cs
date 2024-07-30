@@ -9,8 +9,6 @@ namespace GeniyIdiotWinFormsApp
             InitializeComponent();
         }
 
-
-
         private void ResultForm1cs_Load(object sender, EventArgs e)
         {
             var results = UserResultsStorage.GetUserResults();
@@ -20,9 +18,5 @@ namespace GeniyIdiotWinFormsApp
             }
         }
 
-        private void resultsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
     }
 }

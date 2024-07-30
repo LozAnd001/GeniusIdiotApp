@@ -3,7 +3,6 @@ using System.Text;
 
 namespace GeniusIdiot.Common
 {
-    
     public class FileProvider
     {
         public static void Append(string fileName, string value)
@@ -12,6 +11,7 @@ namespace GeniusIdiot.Common
             writer.WriteLine(value);
             writer.Close();
         }
+
         public static string GetValue(string fileName)
         {
             var reader = new StreamReader(fileName, Encoding.UTF8);
@@ -30,5 +30,4 @@ namespace GeniusIdiot.Common
             return File.Exists(fileName);
         }
     }
-    
 }

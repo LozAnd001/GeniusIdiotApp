@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GeniusIdiot.Common
 {
@@ -28,7 +24,6 @@ namespace GeniusIdiot.Common
                 number = 0;
                 return false;
             }
-
         }
     }
 }

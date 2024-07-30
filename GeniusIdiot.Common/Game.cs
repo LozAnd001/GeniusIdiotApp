@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
 
 namespace GeniusIdiot.Common
 {
@@ -11,12 +10,14 @@ namespace GeniusIdiot.Common
         private Question currentQuestion;
         private int questionNumber = 0;
         private int countQuestions;
+
         public Game(User user)
         {
             this.user = user;
             questions = QuestionStorage.GetAll();
             countQuestions = questions.Count;
         }
+
         public Question GetNextQuestion()
         {
             var random = new Random();  
@@ -25,6 +26,7 @@ namespace GeniusIdiot.Common
             questionNumber++;
             return currentQuestion;
         }
+
         public void AcceptAnswer(int userAnswer)
         {
             int rightAnswer = currentQuestion.Answer;
@@ -33,21 +35,24 @@ namespace GeniusIdiot.Common
                 user.AcceptRightAnswer();
             }
             questions.Remove(currentQuestion);
-
         }
+
         public string GetQuestionNumberText()
         {
             return "Вопрос №" + questionNumber;
         }
+
         public bool End()
         {
             return questions.Count == 0;
         }
+
         public string CalculateDiagnose()
         {
             user.Diagnose = Diagnose.Calculate(countQuestions, user.CountRightAnswers);
             UserResultsStorage.Save(user);
             return user.Name + ", ваш диагноз:" + user.Diagnose;
         }
+
     }
 }

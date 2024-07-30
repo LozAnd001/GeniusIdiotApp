@@ -1,36 +1,25 @@
-﻿namespace GeniusIdiot.Common
+﻿using GeniusIdiot.Common;
+
+namespace GeniusIdiotConsoleApp
 {
     class Program
     {
-
         static void Main()
         {
             while(true)
             {
                 Console.WriteLine("Введите ваше имя");
-                var userName = Console.ReadLine();
-                var questions = QuestionStorage.GetAll();
-                var user = new User(userName);
-                var countQuestions = questions.Count;
-                var random = new Random();
-                for (int i = 0; i < countQuestions; ++i)
+                var game = new Game(new User(Console.ReadLine()));
+                while(!game.End())
                 {
-                    Console.WriteLine($"Вопрос №{i + 1}");
-                    var randomQuestionIndex = random.Next(0, questions.Count);
-                    Console.WriteLine(questions[randomQuestionIndex].Text);
+                    var currentQuestion = game.GetNextQuestion();
+                    Console.WriteLine(game.GetQuestionNumberText());
+                    Console.WriteLine(currentQuestion.Text);
                     var userAnswer = GetNumber();
-                    var rightAnswer = questions[randomQuestionIndex].Answer;
-                    if (userAnswer == rightAnswer)
-                    {
-                        user.AcceptRightAnswer();
-                    }
-                    questions.RemoveAt(randomQuestionIndex);
+                    game.AcceptAnswer(userAnswer);
                 }
-                Console.WriteLine($"Количество правильных ответов: {user.CountRightAnswers}");
-                var diagnose = Diagnose.Calculate(user.CountRightAnswers, countQuestions);
-                user.Diagnose = diagnose;
-                Console.WriteLine($"{userName}, ваш диагноз: {user.Diagnose}");
-                UserResultsStorage.Save(user);
+                var message = game.CalculateDiagnose();
+                Console.WriteLine(message);
                 var userChoice = GetUserChoice("Хотите посмотреть предыдущие результаты игры?");
                 if(userChoice)
                 {
@@ -119,7 +108,5 @@
            }
             return number;
         }
-
-        
     }
 }

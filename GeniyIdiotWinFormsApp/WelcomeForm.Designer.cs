@@ -80,7 +80,6 @@
             Controls.Add(label1);
             Name = "WelcomeForm";
             Text = "WelcomeForm";
-            Load += WelcomeForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

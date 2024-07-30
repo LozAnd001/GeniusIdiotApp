@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+
 
 namespace GeniusIdiot.Common
 {
-
-
     public class UserResultsStorage
     {
         private static string fileName = "userResults.txt";
+
         public static List<User> GetUserResults()
         {
             
@@ -17,7 +16,6 @@ namespace GeniusIdiot.Common
             var lines = value.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
             foreach (var line in lines)
             {
-               
                 var values = line.Split('#');
                 var name = values[0];
                 var countRightAnswers = Convert.ToInt32(values[1]);
@@ -31,15 +29,11 @@ namespace GeniusIdiot.Common
             }
             return results;
         }
-            
 
         public static void Save(User user)
         {
             var value = $"{user.Name}#{user.CountRightAnswers}#{user.Diagnose}";
             FileProvider.Append(fileName, value);
         }
-       
-
     }
-    
 }

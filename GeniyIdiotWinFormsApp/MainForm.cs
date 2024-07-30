@@ -1,6 +1,5 @@
 using GeniusIdiot.Common;
 
-
 namespace GeniyIdiotWinFormsApp
 {
     public partial class mainForm : Form
@@ -25,7 +24,6 @@ namespace GeniyIdiotWinFormsApp
             var currentQuestion = game.GetNextQuestion();
             questionTextLabel.Text = currentQuestion.Text;
             questionNumberLabel.Text = game.GetQuestionNumberText();
-
         }
 
         private void nextButton_Click(object sender, EventArgs e)
@@ -63,7 +61,6 @@ namespace GeniyIdiotWinFormsApp
         {
             var resultForm = new ResultForm();
             resultForm.ShowDialog();
-
         }
     }
 }

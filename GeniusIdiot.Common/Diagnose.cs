@@ -6,7 +6,6 @@
         {
             var diagnoses = GetAll();
             var percentRightAnswers = countRightAnswers * 100 / countQuestions;
-            
             return diagnoses[percentRightAnswers / 20];
         }
 
