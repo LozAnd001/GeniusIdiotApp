@@ -39,22 +39,29 @@ namespace GeniyIdiotWinFormsApp
 
         private void nextButton_Click(object sender, EventArgs e)
         {
-            var userAnswer = Convert.ToInt32(userAnswerTextBox.Text);
-            var rightAnswer = currentQuestion.Answer;
-            if (userAnswer == rightAnswer)
+            var parsed = InputValidator.TryParseToNumber(userAnswerTextBox.Text, out int userAnswer, out string errorMessage);
+            if(!parsed)
             {
-                user.AcceptRightAnswer();
+                MessageBox.Show(errorMessage);
             }
-            questions.Remove(currentQuestion);
-            var endGame = questions.Count == 0;
-            if (endGame)
+            else
             {
-                user.Diagnose = Diagnose.Calculate(user.CountRightAnswers, countQuestions);
-                UserResultsStorage.Save(user);
-                MessageBox.Show(user.Name + ":" + user.Diagnose);
-                return;
+                var rightAnswer = currentQuestion.Answer;
+                if (userAnswer == rightAnswer)
+                {
+                    user.AcceptRightAnswer();
+                }
+                questions.Remove(currentQuestion);
+                var endGame = questions.Count == 0;
+                if (endGame)
+                {
+                    user.Diagnose = Diagnose.Calculate(user.CountRightAnswers, countQuestions);
+                    UserResultsStorage.Save(user);
+                    MessageBox.Show(user.Name + ":" + user.Diagnose);
+                    return;
+                }
+                ShowNextQuestion();
             }
-            ShowNextQuestion();
         }
 
         private void ‚˚ıÓ‰ToolStripMenuItem_Click(object sender, EventArgs e)
