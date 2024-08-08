@@ -11,6 +11,12 @@ namespace GeniusIdiot.Common
             writer.WriteLine(value);
             writer.Close();
         }
+        public static void Replace(string fileName, string value)
+        {
+            var writer = new StreamWriter(fileName, false, Encoding.UTF8);
+            writer.WriteLine(value);
+            writer.Close();
+        }
 
         public static string GetValue(string fileName)
         {

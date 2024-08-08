@@ -50,7 +50,7 @@ namespace GeniusIdiot.Common
         public string CalculateDiagnose()
         {
             user.Diagnose = Diagnose.Calculate(countQuestions, user.CountRightAnswers);
-            UserResultsStorage.Save(user);
+            UserResultsStorage.Append(user);
             return user.Name + ", ваш диагноз:" + user.Diagnose;
         }
 
