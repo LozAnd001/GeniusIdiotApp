@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace GeniusIdiot.Common
 {
     public class QuestionStorage
     {
-        private static string fileName = "questions.txt";
+        private static string fileName = "questions.json";
 
         public static List<Question> GetAll()
         {
@@ -14,16 +15,7 @@ namespace GeniusIdiot.Common
             if (FileProvider.Exists(fileName))
             {
                 var value = FileProvider.GetValue(fileName);
-                var lines = value.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
-                foreach (var line in lines)
-                {
-
-                    var values = line.Split('#');
-                    var text = values[0];
-                    var answer = Convert.ToInt32(values[1]);
-                    var question = new Question(text, answer);
-                    questions.Add(question);
-                }
+                questions = JsonConvert.DeserializeObject<List<Question>>(value);
             }
             else
             {
@@ -39,16 +31,15 @@ namespace GeniusIdiot.Common
 
         private static void SaveQuestions(List<Question> questions)
         {
-            foreach (var question in questions)
-            {
-                Add(question);
-            }
+            var jsonData = JsonConvert.SerializeObject(questions);
+            FileProvider.Replace(fileName, jsonData);
         }
 
         public static void Add(Question newQuestion)
         {
-            var value = $"{newQuestion.Text}#{newQuestion.Answer}";
-            FileProvider.Append("questions.txt", value);
+            var questions = GetAll();
+            questions.Add(newQuestion);
+            SaveQuestions(questions);
         }
 
         public static void Remove(Question removeQuestion)
@@ -62,7 +53,7 @@ namespace GeniusIdiot.Common
                     break;
                 }
             }
-            FileProvider.Clear("question.txt");
+            FileProvider.Clear(fileName);
             SaveQuestions(questions);
         }
     } 
