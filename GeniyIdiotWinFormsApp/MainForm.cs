@@ -69,5 +69,11 @@ namespace GeniyIdiotWinFormsApp
             var newQuestionForm = new AddNewQuestionForm();
             newQuestionForm.ShowDialog();
         }
+
+        private void отображениеСпискаВсехВопросвToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var questionListForm = new QuestionListForm();
+            questionListForm.ShowDialog();
+        }
     }
 }

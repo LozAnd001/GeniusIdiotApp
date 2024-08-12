@@ -40,6 +40,7 @@
             работаСВопросамиToolStripMenuItem = new ToolStripMenuItem();
             добавитьВопросToolStripMenuItem = new ToolStripMenuItem();
             удалитьВопросToolStripMenuItem = new ToolStripMenuItem();
+            отображениеСпискаВсехВопросвToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -119,7 +120,7 @@
             // 
             // работаСВопросамиToolStripMenuItem
             // 
-            работаСВопросамиToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { добавитьВопросToolStripMenuItem, удалитьВопросToolStripMenuItem });
+            работаСВопросамиToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { добавитьВопросToolStripMenuItem, удалитьВопросToolStripMenuItem, отображениеСпискаВсехВопросвToolStripMenuItem });
             работаСВопросамиToolStripMenuItem.Name = "работаСВопросамиToolStripMenuItem";
             работаСВопросамиToolStripMenuItem.Size = new Size(165, 24);
             работаСВопросамиToolStripMenuItem.Text = "Работа с вопросами";
@@ -127,15 +128,22 @@
             // добавитьВопросToolStripMenuItem
             // 
             добавитьВопросToolStripMenuItem.Name = "добавитьВопросToolStripMenuItem";
-            добавитьВопросToolStripMenuItem.Size = new Size(224, 26);
+            добавитьВопросToolStripMenuItem.Size = new Size(337, 26);
             добавитьВопросToolStripMenuItem.Text = "Добавить вопрос";
             добавитьВопросToolStripMenuItem.Click += добавитьВопросToolStripMenuItem_Click;
             // 
             // удалитьВопросToolStripMenuItem
             // 
             удалитьВопросToolStripMenuItem.Name = "удалитьВопросToolStripMenuItem";
-            удалитьВопросToolStripMenuItem.Size = new Size(224, 26);
+            удалитьВопросToolStripMenuItem.Size = new Size(337, 26);
             удалитьВопросToolStripMenuItem.Text = "Удалить вопрос";
+            // 
+            // отображениеСпискаВсехВопросвToolStripMenuItem
+            // 
+            отображениеСпискаВсехВопросвToolStripMenuItem.Name = "отображениеСпискаВсехВопросвToolStripMenuItem";
+            отображениеСпискаВсехВопросвToolStripMenuItem.Size = new Size(337, 26);
+            отображениеСпискаВсехВопросвToolStripMenuItem.Text = "Отображение списка всех вопросв";
+            отображениеСпискаВсехВопросвToolStripMenuItem.Click += отображениеСпискаВсехВопросвToolStripMenuItem_Click;
             // 
             // mainForm
             // 
@@ -171,5 +179,6 @@
         private ToolStripMenuItem работаСВопросамиToolStripMenuItem;
         private ToolStripMenuItem добавитьВопросToolStripMenuItem;
         private ToolStripMenuItem удалитьВопросToolStripMenuItem;
+        private ToolStripMenuItem отображениеСпискаВсехВопросвToolStripMenuItem;
     }
 }

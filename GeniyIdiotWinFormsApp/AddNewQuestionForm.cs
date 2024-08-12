@@ -29,7 +29,11 @@ namespace GeniusIdiotWinFormsApp
             {
                 var newQuestion = new Question(questionTextBox.Text, userANswer);
                 QuestionStorage.Add(newQuestion);
+                Close();
             }
+            
+           
+            
         }
     }
 }
