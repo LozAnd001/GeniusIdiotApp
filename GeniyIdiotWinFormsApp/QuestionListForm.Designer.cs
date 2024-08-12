@@ -31,6 +31,7 @@
             questionsDataGridView = new DataGridView();
             Column1 = new DataGridViewTextBoxColumn();
             Column2 = new DataGridViewTextBoxColumn();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)questionsDataGridView).BeginInit();
             SuspendLayout();
             // 
@@ -38,7 +39,7 @@
             // 
             questionsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             questionsDataGridView.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2 });
-            questionsDataGridView.Location = new Point(12, 12);
+            questionsDataGridView.Location = new Point(12, 69);
             questionsDataGridView.Name = "questionsDataGridView";
             questionsDataGridView.RowHeadersWidth = 51;
             questionsDataGridView.Size = new Size(308, 426);
@@ -58,11 +59,22 @@
             Column2.Name = "Column2";
             Column2.Width = 125;
             // 
+            // button1
+            // 
+            button1.Location = new Point(256, 18);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 1;
+            button1.Text = "Удалить";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // QuestionListForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(328, 444);
+            ClientSize = new Size(386, 546);
+            Controls.Add(button1);
             Controls.Add(questionsDataGridView);
             Name = "QuestionListForm";
             Text = "QuestionListForm";
@@ -76,5 +88,6 @@
         private DataGridView questionsDataGridView;
         private DataGridViewTextBoxColumn Column1;
         private DataGridViewTextBoxColumn Column2;
+        private Button button1;
     }
 }
