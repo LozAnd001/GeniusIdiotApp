@@ -1,4 +1,5 @@
 using GeniusIdiot.Common;
+using GeniusIdiotWinFormsApp;
 
 namespace GeniyIdiotWinFormsApp
 {
@@ -15,7 +16,7 @@ namespace GeniyIdiotWinFormsApp
             var welcomeForm = new WelcomeForm();
             welcomeForm.ShowDialog();
             var user = new User(welcomeForm.userNameTextBox.Text);
-            game = new Game(user);  
+            game = new Game(user);
             ShowNextQuestion();
         }
 
@@ -29,14 +30,14 @@ namespace GeniyIdiotWinFormsApp
         private void nextButton_Click(object sender, EventArgs e)
         {
             var parsed = InputValidator.TryParseToNumber(userAnswerTextBox.Text, out int userAnswer, out string errorMessage);
-            if(!parsed)
+            if (!parsed)
             {
                 MessageBox.Show(errorMessage);
             }
             else
             {
                 game.AcceptAnswer(userAnswer);
-                
+
                 if (game.End())
                 {
                     var message = game.CalculateDiagnose();
@@ -61,6 +62,12 @@ namespace GeniyIdiotWinFormsApp
         {
             var resultForm = new ResultForm();
             resultForm.ShowDialog();
+        }
+
+        private void ‰Ó·‡‚ËÚ¸¬ÓÔÓÒToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var newQuestionForm = new AddNewQuestionForm();
+            newQuestionForm.ShowDialog();
         }
     }
 }

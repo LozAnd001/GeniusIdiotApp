@@ -37,6 +37,9 @@
             предыдущиеРезультатыToolStripMenuItem = new ToolStripMenuItem();
             рестартToolStripMenuItem = new ToolStripMenuItem();
             выходToolStripMenuItem = new ToolStripMenuItem();
+            работаСВопросамиToolStripMenuItem = new ToolStripMenuItem();
+            добавитьВопросToolStripMenuItem = new ToolStripMenuItem();
+            удалитьВопросToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -79,7 +82,7 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { файлToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { файлToolStripMenuItem, работаСВопросамиToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(413, 28);
@@ -114,6 +117,26 @@
             выходToolStripMenuItem.Text = "Выход";
             выходToolStripMenuItem.Click += выходToolStripMenuItem_Click;
             // 
+            // работаСВопросамиToolStripMenuItem
+            // 
+            работаСВопросамиToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { добавитьВопросToolStripMenuItem, удалитьВопросToolStripMenuItem });
+            работаСВопросамиToolStripMenuItem.Name = "работаСВопросамиToolStripMenuItem";
+            работаСВопросамиToolStripMenuItem.Size = new Size(165, 24);
+            работаСВопросамиToolStripMenuItem.Text = "Работа с вопросами";
+            // 
+            // добавитьВопросToolStripMenuItem
+            // 
+            добавитьВопросToolStripMenuItem.Name = "добавитьВопросToolStripMenuItem";
+            добавитьВопросToolStripMenuItem.Size = new Size(224, 26);
+            добавитьВопросToolStripMenuItem.Text = "Добавить вопрос";
+            добавитьВопросToolStripMenuItem.Click += добавитьВопросToolStripMenuItem_Click;
+            // 
+            // удалитьВопросToolStripMenuItem
+            // 
+            удалитьВопросToolStripMenuItem.Name = "удалитьВопросToolStripMenuItem";
+            удалитьВопросToolStripMenuItem.Size = new Size(224, 26);
+            удалитьВопросToolStripMenuItem.Text = "Удалить вопрос";
+            // 
             // mainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -145,5 +168,8 @@
         private ToolStripMenuItem предыдущиеРезультатыToolStripMenuItem;
         private ToolStripMenuItem рестартToolStripMenuItem;
         private ToolStripMenuItem выходToolStripMenuItem;
+        private ToolStripMenuItem работаСВопросамиToolStripMenuItem;
+        private ToolStripMenuItem добавитьВопросToolStripMenuItem;
+        private ToolStripMenuItem удалитьВопросToolStripMenuItem;
     }
 }
