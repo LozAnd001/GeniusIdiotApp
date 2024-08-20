@@ -1,6 +1,6 @@
 ﻿using Telegram.Bot.Types.ReplyMarkups;
 
-namespace GeniusIdiotTelegramBotApp.User.Page
+namespace GeniusIdiotTelegramBotApp.UserBot.Page
 {
     public class PageResult
     {

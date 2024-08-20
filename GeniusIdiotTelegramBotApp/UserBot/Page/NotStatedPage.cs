@@ -5,13 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using Telegram.Bot.Types;
 
-namespace GeniusIdiotTelegramBotApp.User.Page
+namespace GeniusIdiotTelegramBotApp.UserBot.Page
 {
     public class NotStatedPage : IPage
     {
-        public PageResult View(Update update, UserState userState)
+        public PageResult Handle(Update update, UserState userState)
         {
             return new StartPage().View(update, userState);
+        }
+
+        public PageResult View(Update update, UserState userState)
+        {
+            return null;
         }
     }
 }

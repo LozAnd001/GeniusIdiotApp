@@ -1,11 +1,11 @@
-﻿using GeniusIdiotTelegramBotApp.User.Page;
+﻿using GeniusIdiotTelegramBotApp.UserBot.Page;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GeniusIdiotTelegramBotApp.User
+namespace GeniusIdiotTelegramBotApp.UserBot
 {
     public record class UserState(IPage Page, UserData UserData)
     {

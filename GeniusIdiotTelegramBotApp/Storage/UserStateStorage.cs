@@ -1,4 +1,4 @@
-﻿using GeniusIdiotTelegramBotApp.User;
+﻿using GeniusIdiotTelegramBotApp.UserBot;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
