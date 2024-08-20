@@ -1,9 +1,14 @@
-﻿using Telegram.Bot;
+﻿using GeniusIdiotTelegramBotApp.Storage;
+using GeniusIdiotTelegramBotApp.User;
+using GeniusIdiotTelegramBotApp.User.Page;
+using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
 
 class Program
 {
+    static UserStateStorage storage = new UserStateStorage();
+
     static async Task Main(string[] args)
     {
         var telegramBotClient = new TelegramBotClient("7325936984:AAHkxwlIXZ9v6qJP0CbRgF4KNRp2CBYRubg");
@@ -15,61 +20,31 @@ class Program
 
     private static async Task HandleUpdate(ITelegramBotClient client, Update update, CancellationToken token)
     {
-        if(update.Message?.Text != null)
+        if(update.Message?.Text == null)
         {
-            var data = update.Message.Text.Split();
-            if (data[0] == "/buttons" && data.Length == 3)
-            {
-                var n = int.Parse(data[1]);
-                var m = int.Parse(data[2]);
-                var buttons = GetReplyButtons(n, m);
-                var charId = update.Message.Chat.Id;
-                var text = update.Message.Text;
-                var messageId = update.Message.MessageId;
-                //await client.SendTextMessageAsync(chatId: charId, $"Вы прислали: \n {text}");
-                //await client.SendTextMessageAsync(chatId: charId,
-                //    text: $"Вы прислали: \n {text}",
-                //    replyToMessageId: messageId);
-                await client.SendTextMessageAsync(
-                    chatId: charId,
-                    text: text,
-                    replyMarkup: new ReplyKeyboardMarkup(buttons)
-                    {
-                        ResizeKeyboard = true,
-
-                    }                   
-                    );
-            }
-            //var charId = update.Message.Chat.Id;
-            //var text = update.Message.Text;
-            //var messageId = update.Message.MessageId;
-            //await client.SendTextMessageAsync(chatId: charId, $"Вы прислали: \n {text}");
-            //await client.SendTextMessageAsync(chatId: charId,
-            //    text: $"Вы прислали: \n {text}",
-            //    replyToMessageId: messageId);
-            //await client.SendTextMessageAsync(chatId: charId,
-            //    replyMarkup: new ReplyKeyboardMarkup(new KeyboardButton("Кнопка 1")),
-            //    text: $"Вы прислали: \n {text}"
-            //    );
+            return;
         }
+        var telegramUserId = update.Message.From.Id;
+        Console.WriteLine($"update_id = {update.Id}, telemUserId = {telegramUserId}");
+        var isExistUserState = storage.TryGet(telegramUserId, out var userState);
+        if(!isExistUserState)
+        {
+            userState = new UserState(new NotStatedPage(), new UserData());
+        }
+        Console.WriteLine($"update_id = {update.Id}, userState = {userState}");
+        var result = userState!.Page.View(update, userState);
+        Console.WriteLine($"update_id = {update.Id}, text = {result.Text}, UpdatedUserState = {result.UpdatedUserState}");
+        await client.SendTextMessageAsync(
+            chatId: telegramUserId,
+            text: result.Text,
+            replyMarkup: result.ReplyMarkup);
+        storage.AddOrUpdate(telegramUserId, result.UpdatedUserState);
+
+
+
     }
 
-    private static List<List<KeyboardButton>> GetReplyButtons(int n, int m)
-    {
-        var buttons = new List<List<KeyboardButton>> ();
-        var number = 1;
-        for(int i = 0; i < n; ++i)
-        {
-            var row = new List<KeyboardButton> ();  
-            for(int j = 0; j < m; ++j)
-            {
-                row.Add(new KeyboardButton(number.ToString()));
-                number++;
-            }
-            buttons.Add(row);
-        }
-        return buttons;
-    }
+    
 
     private static async Task HandlePoolingError(ITelegramBotClient client, Exception exception, CancellationToken token)
     {
