@@ -30,6 +30,8 @@ namespace GeniusIdiotTelegramBotApp.UserBot.Page
                     return new PassPage().View(update, userState);
                 case "Тест “Гений-Идиот”":
                     return new GeniusIdiotPage().View(update, userState);
+                case "Назад":
+                    return new StartPage().View(update, userState);
                 default:
                     return null;
 
@@ -60,7 +62,9 @@ namespace GeniusIdiotTelegramBotApp.UserBot.Page
                     [
                         new KeyboardButton("Тест “Гений-Идиот”")
                     ],
-                    
+                    [
+                        new KeyboardButton("Назад")
+                    ]
                    ])
             {
                 ResizeKeyboard = true

@@ -22,8 +22,6 @@ namespace GeniusIdiotTelegramBotApp.UserBot.Page
                 return new PageResult("Нажмите на кнопки", GetReplyKeyBoard());
             switch (update.Message.Text)
             {
-                case "Назад":
-                    return new PassPage().View(update, userState);
                 case "На главную страницу":
                     return new StartPage().View(update, userState);
                 default:
