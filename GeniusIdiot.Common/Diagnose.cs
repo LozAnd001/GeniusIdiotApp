@@ -2,7 +2,7 @@
 {
     public class Diagnose
     {
-        public static string Calculate(int countRightAnswers, int countQuestions)
+        public static string Calculate(int countQuestions, int countRightAnswers)
         {
             var diagnoses = GetAll();
             var percentRightAnswers = countRightAnswers * 100 / countQuestions;

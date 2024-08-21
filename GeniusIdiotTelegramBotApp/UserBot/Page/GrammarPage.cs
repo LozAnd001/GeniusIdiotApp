@@ -6,12 +6,13 @@ namespace GeniusIdiotTelegramBotApp.UserBot.Page
     {
         public PageResult Handle(Update update, UserState userState)
         {
-            throw new NotImplementedException();
+            return new PassPage().View(update, userState);
         }
 
-        PageResult View(Update update, UserState userState)
+        public PageResult View(Update update, UserState userState)
         {
-            throw new NotImplementedException();
+            return new PassPage().View(update, userState);
         }
+        
     }
 }

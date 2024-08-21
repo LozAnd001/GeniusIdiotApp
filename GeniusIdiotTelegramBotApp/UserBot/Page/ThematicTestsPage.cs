@@ -36,10 +36,6 @@ namespace GeniusIdiotTelegramBotApp.UserBot.Page
             }
         }
 
-        
-
-        
-
         private static string GetText()
         {
             return "Выберите тест, который хотите пройти";
@@ -71,5 +67,5 @@ namespace GeniusIdiotTelegramBotApp.UserBot.Page
             };
         }
     }
-    }
+    
 }

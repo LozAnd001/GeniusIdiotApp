@@ -25,15 +25,15 @@ class Program
             return;
         }
         var telegramUserId = update.Message.From.Id;
-        Console.WriteLine($"update_id = {update.Id}, telemUserId = {telegramUserId}");
+        //Console.WriteLine($"update_id = {update.Id}, telemUserId = {telegramUserId}");
         var isExistUserState = storage.TryGet(telegramUserId, out var userState);
         if(!isExistUserState)
         {
             userState = new UserState(new NotStatedPage(), new UserData(update.Message.From.FirstName));
         }
-        Console.WriteLine($"update_id = {update.Id}, userState = {userState}");
+        //Console.WriteLine($"update_id = {update.Id}, userState = {userState}");
         var result = userState!.Page.Handle(update, userState);
-        Console.WriteLine($"update_id = {update.Id}, text = {result.Text}, UpdatedUserState = {result.UpdatedUserState}");
+        //Console.WriteLine($"update_id = {update.Id}, text = {result.Text}, UpdatedUserState = {result.UpdatedUserState}");
         await client.SendTextMessageAsync(
             chatId: telegramUserId,
             text: result.Text,
