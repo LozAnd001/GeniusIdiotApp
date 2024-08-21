@@ -44,6 +44,20 @@ class Program
                     caption: photoPageResult.Text,
                     replyMarkup: photoPageResult.ReplyMarkup);
                 break;
+            case VideoPageResult photoPageResult:
+                await client.SendVideoAsync(
+                    chatId: telegramUserId,
+                    video: photoPageResult.Video,
+                    caption: photoPageResult.Text,
+                    replyMarkup: photoPageResult.ReplyMarkup);
+                break;
+            case AudioPageResult photoPageResult:
+                await client.SendAudioAsync(
+                    chatId: telegramUserId,
+                    audio: photoPageResult.Audio,
+                    caption: photoPageResult.Text,
+                    replyMarkup: photoPageResult.ReplyMarkup);
+                break;
             default:
                 await client.SendTextMessageAsync(
                     chatId: telegramUserId,
