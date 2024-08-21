@@ -34,6 +34,15 @@ class Program
         //Console.WriteLine($"update_id = {update.Id}, userState = {userState}");
         var result = userState!.Page.Handle(update, userState);
         //Console.WriteLine($"update_id = {update.Id}, text = {result.Text}, UpdatedUserState = {result.UpdatedUserState}");
+        if(result.UpdatedUserState.Page is StartPage)
+        {
+            using (var file = new FileStream(@"Images\bot.png", FileMode.Open, FileAccess.Read))
+            {
+                await client.SendPhotoAsync(
+                    chatId: telegramUserId,
+                    photo: InputFile.FromStream(file));
+            }
+        }
         await client.SendTextMessageAsync(
             chatId: telegramUserId,
             text: result.Text,
