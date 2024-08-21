@@ -1,6 +1,7 @@
 ﻿using GeniusIdiotTelegramBotApp.Storage;
 using GeniusIdiotTelegramBotApp.UserBot;
 using GeniusIdiotTelegramBotApp.UserBot.Page;
+using GeniusIdiotTelegramBotApp.UserBot.Page.PageResults;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
@@ -34,19 +35,22 @@ class Program
         //Console.WriteLine($"update_id = {update.Id}, userState = {userState}");
         var result = userState!.Page.Handle(update, userState);
         //Console.WriteLine($"update_id = {update.Id}, text = {result.Text}, UpdatedUserState = {result.UpdatedUserState}");
-        if(result.UpdatedUserState.Page is StartPage)
+        switch(result)
         {
-            using (var file = new FileStream(@"Images\bot.png", FileMode.Open, FileAccess.Read))
-            {
+            case PhotoPageResult photoPageResult:
                 await client.SendPhotoAsync(
                     chatId: telegramUserId,
-                    photo: InputFile.FromStream(file));
-            }
+                    photo: photoPageResult.Photo,
+                    caption: photoPageResult.Text,
+                    replyMarkup: photoPageResult.ReplyMarkup);
+                break;
+            default:
+                await client.SendTextMessageAsync(
+                    chatId: telegramUserId,
+                    text: result.Text,
+                    replyMarkup: result.ReplyMarkup);
+                break;
         }
-        await client.SendTextMessageAsync(
-            chatId: telegramUserId,
-            text: result.Text,
-            replyMarkup: result.ReplyMarkup);
         storage.AddOrUpdate(telegramUserId, result.UpdatedUserState);
     }
 

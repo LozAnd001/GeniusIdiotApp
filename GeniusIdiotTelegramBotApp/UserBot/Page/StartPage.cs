@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GeniusIdiotTelegramBotApp.UserBot.Page.PageResults;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
 using static System.Net.Mime.MediaTypeNames;
@@ -13,21 +14,22 @@ namespace GeniusIdiotTelegramBotApp.UserBot.Page
     {
         
 
-        public PageResult View(Update update, UserState userState)
+        public PageResultBase View(Update update, UserState userState)
         {
-            string text = GetText();
-            ReplyKeyboardMarkup replyMarkup = GetReplyKeyBoard();
-            return new PageResult(text, replyMarkup)
+            var text = GetText();
+            var replyMarkup = GetReplyKeyBoard();
+            var photoUrl = "https://disk.yandex.ru/i/4dW-iFD-SbUODw";
+            return new PhotoPageResult(InputFile.FromUri(photoUrl), text, replyMarkup)
             {
                 UpdatedUserState = new UserState(this, userState.UserData)
             };
 
         }
 
-        public PageResult Handle(Update update, UserState userState)
+        public PageResultBase Handle(Update update, UserState userState)
         {
             if (update.Message == null)
-                return new PageResult("Нажмите на кнопки", GetReplyKeyBoard());
+                return new PageResultBase("Нажмите на кнопки", GetReplyKeyBoard());
             switch(update.Message.Text)
             {
                 case "Тематические тесты":
@@ -59,7 +61,7 @@ namespace GeniusIdiotTelegramBotApp.UserBot.Page
 Хочешь проверить свои знания? Мы можем работать над грамматикой, словарным запасом, произношением и многим другим. Просто выбери, с чем именно ты хочешь поработать, и я с радостью помогу! Давай сделаем обучение интересным и продуктивным! 🌟";
         }
 
-        private static ReplyKeyboardMarkup GetReplyKeyBoard()
+        private static IReplyMarkup GetReplyKeyBoard()
             {
                 return new ReplyKeyboardMarkup(
                     [

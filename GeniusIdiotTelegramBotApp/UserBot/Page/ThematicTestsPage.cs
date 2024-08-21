@@ -1,23 +1,24 @@
-﻿using Telegram.Bot.Types;
+﻿using GeniusIdiotTelegramBotApp.UserBot.Page.PageResults;
+using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
 
 namespace GeniusIdiotTelegramBotApp.UserBot.Page
 {
     public class ThematicTestsPage : IPage
     {
-        public PageResult View(Update update, UserState userState)
+        public PageResultBase View(Update update, UserState userState)
         {
             var text = GetText();
             var replyMarkup = GetReplyKeyBoard();
-            return new PageResult(text, replyMarkup)
+            return new PageResultBase(text, replyMarkup)
             {
                 UpdatedUserState = new UserState(this, userState.UserData)
             };
         }
-        public PageResult Handle(Update update, UserState userState)
+        public PageResultBase Handle(Update update, UserState userState)
         {
             if (update.Message == null)
-                return new PageResult("Нажмите на кнопки", GetReplyKeyBoard());
+                return new PageResultBase("Нажмите на кнопки", GetReplyKeyBoard());
             switch (update.Message.Text)
             {
                 case "Тест на определения уровня английского языка":
