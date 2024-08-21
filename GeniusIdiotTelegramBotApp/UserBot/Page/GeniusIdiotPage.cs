@@ -9,6 +9,7 @@ namespace GeniusIdiotTelegramBotApp.UserBot.Page
         {
             if(game == null)
                 game = new GameGeniusIdiot(new UserData(update.Message.From.FirstName));  
+
         }
 
         public PageResult Handle(Update update, UserState userState)

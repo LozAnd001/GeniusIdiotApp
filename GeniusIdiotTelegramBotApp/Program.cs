@@ -29,7 +29,7 @@ class Program
         var isExistUserState = storage.TryGet(telegramUserId, out var userState);
         if(!isExistUserState)
         {
-            userState = new UserState(new NotStatedPage(), new UserData());
+            userState = new UserState(new NotStatedPage(), new UserData(update.Message.From.FirstName));
         }
         Console.WriteLine($"update_id = {update.Id}, userState = {userState}");
         var result = userState!.Page.Handle(update, userState);
@@ -39,9 +39,6 @@ class Program
             text: result.Text,
             replyMarkup: result.ReplyMarkup);
         storage.AddOrUpdate(telegramUserId, result.UpdatedUserState);
-
-
-
     }
 
     
