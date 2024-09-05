@@ -47,12 +47,15 @@
     <Compile Include="Diagnose.cs" />
     <Compile Include="FileProvider.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="IConvert.cs" />
     <Compile Include="InputValidator.cs" />
+    <Compile Include="JsonConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Question.cs" />
     <Compile Include="QuestionStorage.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserResultsStorage.cs" />
+    <Compile Include="XMLConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

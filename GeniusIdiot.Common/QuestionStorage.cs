@@ -1,53 +1,13 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Xml.Serialization;
 
 namespace GeniusIdiot.Common
 {
-    public interface IConvert
-    {
-        string Serialize<T>(T item);
-        T Deserialize<T>(string data);
-
-    }
-
-    public class JsonConverter : IConvert
-    {
-        public string Serialize<T>(T item)
-        {
-            return JsonConvert.SerializeObject(item);
-        }
-
-        public T Deserialize<T>(string data)
-        {
-            return JsonConvert.DeserializeObject<T>(data);
-        } 
-    }
-
-    public class XMLConverter : IConvert
-    {
-        public string Serialize<T>(T item)
-        {
-            var xmlSerializer = new XmlSerializer(typeof(T));
-            using (var textWriter =  new StringWriter())
-            {
-                xmlSerializer.Serialize(textWriter, item);
-                return textWriter.ToString();
-            }
-        }
-
-        public T Deserialize<T>(string data)
-        {
-            throw new NotImplementedException();
-        }
-    }
 
     public static class QuestionStorage
     {
-        private static string fileName = "questions.json";
+        private static readonly string fileName = "questions";
         private static IConvert converter = new JsonConverter();
         public static List<Question> GetAll()
         {
