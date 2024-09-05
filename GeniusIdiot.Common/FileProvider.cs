@@ -7,6 +7,10 @@ namespace GeniusIdiot.Common
     {
         public static void Append(string fileName, string value)
         {
+            //using (var writer = new StreamWriter(fileName, true, Encoding.UTF8))
+            //{
+            //    writer.WriteLine(value);
+            //}
             var writer = new StreamWriter(fileName, true, Encoding.UTF8);
             writer.WriteLine(value);
             writer.Close();

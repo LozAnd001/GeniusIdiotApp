@@ -49,7 +49,7 @@ namespace GeniusIdiot.Common
 
         public string CalculateDiagnose()
         {
-            user.Diagnose = Diagnose.Calculate(countQuestions, user.CountRightAnswers);
+            user.Diagnose = Diagnose.Calculate(user.CountRightAnswers, countQuestions);
             UserResultsStorage.Append(user);
             return user.Name + ", ваш диагноз:" + user.Diagnose;
         }

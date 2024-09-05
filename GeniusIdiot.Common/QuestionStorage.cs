@@ -2,6 +2,8 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace GeniusIdiot.Common
 {
@@ -14,14 +16,32 @@ namespace GeniusIdiot.Common
 
     public class JsonConverter : IConvert
     {
-        public T Deserialize<T>(string data)
-        {
-            return JsonConvert.DeserializeObject<T>(data);
-        }
-
         public string Serialize<T>(T item)
         {
             return JsonConvert.SerializeObject(item);
+        }
+
+        public T Deserialize<T>(string data)
+        {
+            return JsonConvert.DeserializeObject<T>(data);
+        } 
+    }
+
+    public class XMLConverter : IConvert
+    {
+        public string Serialize<T>(T item)
+        {
+            var xmlSerializer = new XmlSerializer(typeof(T));
+            using (var textWriter =  new StringWriter())
+            {
+                xmlSerializer.Serialize(textWriter, item);
+                return textWriter.ToString();
+            }
+        }
+
+        public T Deserialize<T>(string data)
+        {
+            throw new NotImplementedException();
         }
     }
 
