@@ -2,7 +2,7 @@
 
 namespace GeniusIdiot.Common
 {
-    public class InputValidator
+    public static class InputValidator
     {
         public static bool TryParseToNumber(string input, out int number, out string errorMessage)
         {

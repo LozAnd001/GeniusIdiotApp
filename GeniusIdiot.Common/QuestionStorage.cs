@@ -1,13 +1,34 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 
 namespace GeniusIdiot.Common
 {
-    public class QuestionStorage
+    public interface IConvert
+    {
+        string Serialize<T>(T item);
+        T Deserialize<T>(string data);
+
+    }
+
+    public class JsonConverter : IConvert
+    {
+        public T Deserialize<T>(string data)
+        {
+            return JsonConvert.DeserializeObject<T>(data);
+        }
+
+        public string Serialize<T>(T item)
+        {
+            return JsonConvert.SerializeObject(item);
+        }
+    }
+
+    public static class QuestionStorage
     {
         private static string fileName = "questions.json";
-
+        private static IConvert converter = new JsonConverter();
         public static List<Question> GetAll()
         {
 
@@ -15,7 +36,7 @@ namespace GeniusIdiot.Common
             if (FileProvider.Exists(fileName))
             {
                 var value = FileProvider.GetValue(fileName);
-                questions = JsonConvert.DeserializeObject<List<Question>>(value);
+                questions = converter.Deserialize<List<Question>>(value);
             }
             else
             {
@@ -31,7 +52,7 @@ namespace GeniusIdiot.Common
 
         private static void SaveQuestions(List<Question> questions)
         {
-            var jsonData = JsonConvert.SerializeObject(questions);
+            var jsonData = converter.Serialize(questions);
             FileProvider.Replace(fileName, jsonData);
         }
 

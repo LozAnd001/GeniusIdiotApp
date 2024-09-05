@@ -6,7 +6,7 @@ using System.IO;
 
 namespace GeniusIdiot.Common
 {
-    public class UserResultsStorage
+    public static class UserResultsStorage
     {
         private static string fileName = "userResults.json";
 

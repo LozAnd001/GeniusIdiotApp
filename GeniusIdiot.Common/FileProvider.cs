@@ -3,7 +3,7 @@ using System.Text;
 
 namespace GeniusIdiot.Common
 {
-    public class FileProvider
+    public static class FileProvider
     {
         public static void Append(string fileName, string value)
         {

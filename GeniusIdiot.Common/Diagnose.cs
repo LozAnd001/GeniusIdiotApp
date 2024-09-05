@@ -1,6 +1,6 @@
 ﻿namespace GeniusIdiot.Common
 {
-    public class Diagnose
+    public static class Diagnose
     {
         public static string Calculate(int countRightAnswers, int countQuestions)
         {
@@ -9,7 +9,7 @@
             return diagnoses[percentRightAnswers / 20];
         }
 
-        static string[] GetAll()
+        private static string[] GetAll()
         {
             var diagnoses = new string[6];
             diagnoses[0] = "кретин";

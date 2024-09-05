@@ -20,7 +20,7 @@ namespace GeniusIdiotWinFormsApp
 
         private void QuestionListForm_Load(object sender, EventArgs e)
         {
-            var questions = QuestionStorage.GetAll();
+                var questions = QuestionStorage.GetAll();
             foreach (var question in questions)
             {
                 questionsDataGridView.Rows.Add(question.Text, question.Answer);
