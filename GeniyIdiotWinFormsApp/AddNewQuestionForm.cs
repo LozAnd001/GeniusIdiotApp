@@ -21,7 +21,7 @@ namespace GeniusIdiotWinFormsApp
         private void addButton_Click(object sender, EventArgs e)
         {
             var parsed = InputValidator.TryParseToNumber(answerTextBox.Text, out int userANswer, out string errorMessage);
-            if(!parsed)
+            if (!parsed)
             {
                 MessageBox.Show(errorMessage);
             }
@@ -31,9 +31,14 @@ namespace GeniusIdiotWinFormsApp
                 QuestionStorage.Add(newQuestion);
                 Close();
             }
-            
-           
-            
+
+
+
+        }
+
+        private void AddNewQuestionForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

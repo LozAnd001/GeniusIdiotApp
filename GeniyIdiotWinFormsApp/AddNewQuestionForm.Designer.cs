@@ -92,6 +92,7 @@
             Controls.Add(label1);
             Name = "AddNewQuestionForm";
             Text = "AddNewQuestionForm";
+            Load += AddNewQuestionForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
